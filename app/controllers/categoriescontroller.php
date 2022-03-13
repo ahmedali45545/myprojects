@@ -19,7 +19,7 @@ class CategoriesController extends AbstractController
         if($_SERVER['REQUEST_METHOD']=='POST')
         {
             $catName=$this->filterString($_POST['catName']);
-            
+
             $cat=new CategoryModel();
             $cat->name=$catName;
             if($cat->save())
