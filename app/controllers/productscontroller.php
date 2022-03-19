@@ -35,7 +35,7 @@ class ProductsController extends AbstractController
 
                 if(!in_array($imgExt[1],$extensions))
                 {
-                    $imgUrl=APP_PATH.DS.'images'.DS.$name.'.'.$imgName;
+                    $imgUrl='./images/'.$name.'.'.$imgName;
                 }
                 else
                 {
@@ -48,7 +48,6 @@ class ProductsController extends AbstractController
             $product->price=$price;
             $product->catId=$catId;
             $product->imgUrl=$imgUrl;
-            var_dump($product);
             if($product->save())
             {
                 move_uploaded_file($imgTmp,$imgUrl);

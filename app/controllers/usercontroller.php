@@ -9,7 +9,7 @@ class UserController extends AbstractController
    
 
     //all users
-    function allAction()
+    function defaultAction()
     {
 
        $this->data['users']=UserModel::getAll();
@@ -41,9 +41,9 @@ class UserController extends AbstractController
                 $file_ext=strtolower(end($file_ext));
                 $ext= array("jpeg","jpg","png");
                 if(in_array($file_ext,$ext)){
-                  $imgUrl=$file_name;
+                  $imgUrl="./images/".DS.$file_name;
                    
-                 move_uploaded_file($file_tmp,APP_PATH.DS."images".DS.$imgUrl);
+                 move_uploaded_file($file_tmp,$imgUrl);
              
                  }
 
@@ -73,7 +73,7 @@ class UserController extends AbstractController
              if($user->save())
              {
 
-                header("location: /user/all");
+                header("location: /user");
                 exit;
 
 
@@ -99,11 +99,8 @@ class UserController extends AbstractController
     function editAction()
     {
         $id=filter_var($this->params[0],FILTER_SANITIZE_NUMBER_INT);
-        $data=UserModel::getByKey($id);
-        $this->data['user']=$data;
-
         $this->submit('edit',$id);
-
+        $this->data['user']=UserModel::getByKey($id);
         $this->_view();
 
     }
@@ -116,12 +113,12 @@ class UserController extends AbstractController
     {
         $id=filter_var($this->params[0],FILTER_SANITIZE_NUMBER_INT);
 
-       $data=UserModel::getByKey($id)[0];
+       $data=UserModel::getByKey($id);
        if($data)
        {
            if($data->delete())
            {
-            header("location: /user/all");
+            header("location: /user");
             exit;
 
            }

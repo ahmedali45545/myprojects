@@ -2,18 +2,21 @@
 
 namespace CAFETERIA\CONTROLLERS;
 
+
+
 use CAFETERIA\LIB\FilterInput;
+
 use CAFETERIA\LIB\FrontController;
 
 class AbstractController
 {
-    use FilterInput;
 
     private $controller;
     private $action;
     protected $params=[];
     protected $data=[];
 
+    use FilterInput;
 
     public  function setController($controller)
     {
@@ -40,6 +43,11 @@ class AbstractController
         elseif ($this->action==FrontController::NOT_FOUND_ACTION)
         {
             require APP_PATH.DS.'views/notfound/noview.view.php';
+        }elseif ($this->controller=='auth')
+        {
+            require APP_PATH.DS.'template/head.php';
+            require APP_PATH.DS.'views/auth/login.view.php';
+            require APP_PATH.DS.'template/footer.php';
         }
         else
         {
@@ -48,6 +56,7 @@ class AbstractController
             require APP_PATH.DS.'template/header.php';
             require APP_PATH.DS.'views/'.$this->controller.DS.$this->action.'.view.php';
             require APP_PATH.DS.'template/footer.php';
+
         }
 
     }

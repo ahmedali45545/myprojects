@@ -10,7 +10,7 @@
    <h1>Users</h1>
 <div class="row">
   <div class="col offset-8 mb-3">
-  <a href="./add" class="btn btn-success px-5">Add</a>
+  <a href="./user/add" class="btn btn-success px-5">Add</a>
   </div>
 </div>
  
@@ -31,13 +31,12 @@
       <td><?=$user->name?></td>
       <td><?=$user->room?></td>
       <td>
-      <?=APP_PATH.DS.'images'.DS.$user->imgUrl;?>
-       <img src="<?=APP_PATH.DS.'images'.DS.$user->imgUrl;?>" height="30px"/>
+       <img src="<?=$user->imgUrl;?>" height="30px"/>
         </td>
       <td><?=$user->ext?></td>
        <td>
-           <a href="./edit/<?= $user->id;?>" type="button" class="btn btn-primary mx-2" >Edit</a>
-           <a href= "./delete/<?= $user->id;?>"  type="button" class="btn btn-danger" >Delete</a>
+           <a href="./user/edit/<?= $user->id;?>" type="button" class="btn btn-primary mx-2" >Edit</a>
+           <a href= "./user/delete/<?= $user->id;?>"  type="button" class="btn btn-danger" >Delete</a>
        </td>
     </tr>
 

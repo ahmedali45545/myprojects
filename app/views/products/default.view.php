@@ -1,5 +1,6 @@
 
 <div class="container">
+
     <table class="w-75  table table-striped table-hover">
         <thead>
         <tr>
@@ -17,7 +18,7 @@
             <tr>
                 <td><?=$product->name?></td>
                 <td><?=$product->price?></td>
-                <td><img src="<?=$product->imgUrl?>"></td>
+                <td><img src="<?=$product->imgUrl?>" width="100" height="100"></td>
                 <td>
                     <?php
                     foreach ($categories as $category)

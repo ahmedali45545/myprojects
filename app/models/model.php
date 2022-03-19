@@ -40,9 +40,11 @@ private function create()
     $this->prepareValue($stmt);
     if ($stmt->execute())
     {
+        $this->{static::$primaryKey} = DatabaseHandler::factory()->lastInsertId();
         return true;
     }
     return false;
+
 }
 private function update()
 {
@@ -75,8 +77,35 @@ public static function getByKey($key)
     if($stmt->execute())
     {
         $obj=$stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE,get_called_class());
+       return $obj? array_shift($obj):false;
+    }
+    return false;
+}
+
+
+public static function getAllByKey($key)
+{
+    $sql='select * from '.static::$tableName.' where '.static::$primaryKey.'='.$key;
+    $stmt=DatabaseHandler::factory()->prepare($sql);
+    if($stmt->execute())
+    {
+         $obj=$stmt->fetchAll(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE,get_called_class());
         return $obj? array_shift($obj):false;
     }
     return false;
 }
+
+protected static function sql($sql)
+{
+
+    $stmt=DatabaseHandler::factory()->prepare($sql);
+
+    if ($stmt->execute())
+    {
+        $arr=$stmt->fetchall(\PDO::FETCH_ASSOC);
+        return array_shift($arr);
+    }
+    return false;
+}
+
 }

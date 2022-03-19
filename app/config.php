@@ -9,8 +9,8 @@ define('VIEW_PATH',realpath(dirname(__FILE__)).'/views');
 
 //database configuration
 defined('DATABASE_HOST_NAME')       ?null:define('DATABASE_HOST_NAME','localhost');
-defined('DATABASE_USER_NAME')       ?null:define('DATABASE_USER_NAME','root');
-defined('DATABASE_PASSWORD')        ?null:define('DATABASE_PASSWORD','Gohar.2010');
+defined('DATABASE_USER_NAME')       ?null:define('DATABASE_USER_NAME','newuser');
+defined('DATABASE_PASSWORD')        ?null:define('DATABASE_PASSWORD','password');
 defined('DATABASE_DB_NAME')         ?null:define('DATABASE_DB_NAME','cafeteria');
 defined('DATABASE_PORT_NUMBER')     ?null:define('DATABASE_PORT_NUMBER',3306);
 defined('DATABASE_CONN_DRIVER')     ?null:define('DATABASE_CONN_DRIVER',1);

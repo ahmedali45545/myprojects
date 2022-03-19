@@ -1,5 +1,5 @@
-<div class="container mt-5 p-5 bg-light">
-    <div class="row ">
+<div class="container">
+    <div class="row">
         <div class="col-4">
             <h3>order details</h3>
             <table class="table">
@@ -29,7 +29,6 @@
                         <?php
                         $total+=($value['itemPrice']*$value['itemQuantity']);
                     }
-                    $_SESSION['totalPrice']=$total;
                 }?>
                 <tr>
                     <td colspan="3" align="right">Total</td>
@@ -38,37 +37,29 @@
                 </tr>
                 </tbody>
             </table>
-            <form method="post" action="/orders/add">
+            <form method="post" action="/index/add">
                 <label for="user" class="form-label">User</label>
                 <select name="user" id="user" class="form-control">
-                    <?php
-                    foreach ($users as $user)
-                    {?>
-                    <option value="<?=$user->id?>"><?=$user->name?></option>
-                    <?php }
-                    ?>
-
+                    <option value="1">omar</option>
                 </select>
                 <button  <?=empty($_SESSION['shopping_cart'])?'disabled':''?> class="btn btn-primary mt-4">Confirm</button>
             </form>
         </div>
-        <div class="col-1"></div>
-        <div class="col-7">
-
+        <div class="col-8">
+            <div></div>
             <div class="row">
                 <?php
                 foreach ($products as $product)
                 {?>
-                    <form class="col-3 " method="post" action="/?action=add&id=<?=$product->id?>">
-                        <img  src="<?=$product->imgUrl?>" width="100" height="100">
+                    <form class="col-3" method="post" action="/?action=add&id=<?=$product->id?>">
+                        <img src="<?=$product->imgUrl?>">
                         <h4 class="text-info"><?=$product->name?></h4>
                         <h4 class="text-danger"><?=$product->price?></h4>
-                        <input type="number" name="quantity" value="1" class="form-control w-50 mb-3" id="">
+                        <input type="number" name="quantity" value="1" class="form-control" id="">
                         <input type="hidden" name="hidden_name" value="<?=$product->name?>">
                         <input type="hidden" name="hidden_price" value="<?=$product->price?>">
                         <input type="submit" name="submit" value="add to cart" class="btn btn-success">
                     </form>
-
                 <?php }
                 ?>
             </div>
